@@ -1,37 +1,74 @@
-const obj = {
-    start: 0,
-    duration: 30,
-    title: 'Travel to work'
+const arrObj = [];
+
+const button = document.querySelector('button');    
+button.onclick = myPlan;
+
+
+
+
+function Object(start, duration, tittle){
+    this.id = start,
+    this.start = start,
+    this.duration = duration,
+    this.title = tittle
+
 }
 
+// function clearInput(){
+//     document.getElementById('title').value = '';
+//     document.getElementById('start').value = '';
+//     document.getElementById('duration').value = '';
+// }
 
-
-
-const button = document.querySelector('button');
-
-
-    
-button.onclick = myPlan;
 
 
 function myPlan(){
     
-    const title = document.getElementById('title').value;
-    const start = document.getElementById('start').value;
-    const duration = document.getElementById('duration').value;
-    const eventEl = document.createElement('div');
+    let title = document.getElementById('title').value;
+    let start = document.getElementById('start').value.replace(/\D/g, '');
+    let duration = document.getElementById('duration').value
+    let eventEl = document.createElement('div');
+    eventEl.className = 'online-Event';
+    
+    let user = new Object(start, duration, title);
+    arrObj.push(user)
+    console.log(arrObj);
 
-    eventEl.style.backgroundColor = '#679fcd';
-    eventEl.style.width = '200px';
-    eventEl.style.height = `${duration * 2}px`;
-    // eventEl.style.height = `${obj.duration * 2}px`;
-    eventEl.textContent = title;
-    eventEl.style.zIndex = '99';
+    arrObj.forEach(el =>{
+        eventEl.style.backgroundColor = '#679fcd';
+        eventEl.style.width = '200px';
+        eventEl.style.height = `${el.duration * 2}px`;
+        // eventEl.style.height = `${obj.duration * 2}px`;
+        eventEl.textContent = el.title;
+        eventEl.style.zIndex = '99';
     
     
-    let domain = document.getElementById('800')
+    let domain = document.getElementById(`${el.start}`)
     domain.appendChild(eventEl)
 
+    })
+
+    
+
+    // clearInput()
+
+    // document.getElementById('title').value = '';
+    // document.getElementById('start').value = '';
+    // document.getElementById('duration').value = '';
 }
+
+document.getElementById('Clear').addEventListener('click', function clearAll(){
+    let onlineEvent = document.getElementsByClassName('online-Event');
+    
+    console.log(onlineEvent[0]);
+    document.getElementById('title').value = '';
+    document.getElementById('start').value = '';
+    document.getElementById('duration').value = '';
+
+})
+
+
+
+
 
 
