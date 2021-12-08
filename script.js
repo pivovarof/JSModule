@@ -14,11 +14,7 @@ function Object(start, duration, tittle){
 
 }
 
-// function clearInput(){
-//     document.getElementById('title').value = '';
-//     document.getElementById('start').value = '';
-//     document.getElementById('duration').value = '';
-// }
+
 
 
 
@@ -58,9 +54,17 @@ function myPlan(){
 }
 
 document.getElementById('Clear').addEventListener('click', function clearAll(){
+
     let onlineEvent = document.getElementsByClassName('online-Event');
+    let wrapper = document.querySelectorAll('.wrapper');
     
-    console.log(onlineEvent[0]);
+    wrapper.forEach(el => {
+        el.lastChild.remove();
+    
+    }) 
+    
+    
+    
     document.getElementById('title').value = '';
     document.getElementById('start').value = '';
     document.getElementById('duration').value = '';
